@@ -7,11 +7,14 @@ export const initialUsersState = {
   error: null
 }
 
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
   async ({ username, password }) => {
-    const response = await fetch(`http://127.0.0.1:8000/register/`, {
+    const response = await fetch(apiUrl+`/register/`, {   
+    //const response = await fetch(`http://127.0.0.1:8000/register/`, {   
+
       credentials: 'include',
       method: 'POST',
       headers: {
@@ -35,7 +38,8 @@ export const login = createAsyncThunk(
   'auth/login',
   async ({ username, password }) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/login/`, {
+      //const response = await fetch(`http://127.0.0.1:8000/login/`, {
+        const response = await fetch(apiUrl+`/login/`, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -62,7 +66,8 @@ export const checkUser = createAsyncThunk(
   'auth/checkUser',
   async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+      //const response = await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+        const response = await fetch(apiUrl+`/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
         credentials: 'include',
         method: 'GET',
         headers: {
@@ -86,7 +91,8 @@ export const checkUser = createAsyncThunk(
 export const logout = createAsyncThunk(
   'auth/logout',
   async () => {
-    const response = await fetch(`http://127.0.0.1:8000/logout/`, {
+    //const response = await fetch(`http://127.0.0.1:8000/logout/`, {
+      const response = await fetch(apiUrl+`/logout/`, {
       credentials: 'include',
       method: 'GET',
       headers: {
@@ -104,7 +110,8 @@ export const logout = createAsyncThunk(
   export const changeUsername = createAsyncThunk(
     'auth/changeUsername',
     async ({ newUsername }) => {
-      const response = await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+      //const response = await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+        const response = await fetch(apiUrl+`/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
         credentials: 'include',
         method: 'PATCH',
         headers: {
@@ -123,7 +130,8 @@ export const logout = createAsyncThunk(
   export const changePassword = createAsyncThunk(
     'auth/changePassword',
     async ({ newPassword }) => {
-      await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+      //await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+        await fetch(apiUrl+`/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
         credentials: 'include',
         method: 'PATCH',
         headers: {

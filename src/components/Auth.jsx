@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { Container, Center, TextInput, PasswordInput, Space, Button, Anchor } from '@mantine/core';
 import { login, signUp } from '../redux/slices/authSlice';
 
+
+const apiUrl = process.env.REACT_APP_API_URL;
+
+
 function Auth({ action }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -57,6 +61,7 @@ function Auth({ action }) {
     }
 
     const response = await dispatch(signUp({ username, fullName, email, password }));
+    console.log('response=',response);
     if (signUp.fulfilled.match(response)) {
       navigate('/');
     } else {
@@ -66,7 +71,7 @@ function Auth({ action }) {
 
   return (
     <Center h={700}>
-      <Container style={{"background-Image": 'url("../public/logo192.png")', "background-repeat": 'repeat'} }>
+      <Container style={{"backgroundImage": 'url("../public/logo192.png")', "backgroundrepeat": 'repeat'} }>
         {action === 'signup' && (
           <>
             <TextInput
